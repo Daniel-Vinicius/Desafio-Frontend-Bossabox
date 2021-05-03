@@ -1,7 +1,17 @@
+import { Container } from "./styles.home";
+
+import SearchBar from "../components/SearchBar";
+
 export default function Home() {
   return (
-    <div>
-      <h1>My page</h1>
-    </div>
+    <>
+      <Container>
+        <header>
+          <h1>VUTTR</h1>
+          <h2>Very Useful Tools to remember</h2>
+        </header>
+        <SearchBar checkboxLabel="Search in tags only" />
+      </Container>
+    </>
   );
 }
