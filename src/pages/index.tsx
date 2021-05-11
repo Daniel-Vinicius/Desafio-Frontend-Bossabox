@@ -32,13 +32,9 @@ export default function Home(): JSX.Element {
 
         {isLoading && <Skeleton error={Boolean(error)} />}
 
-        {!isLoading && (
-          <>
-            <Card />
-            <Card />
-            <Card />
-          </>
-        )}
+        {!isLoading &&
+          data &&
+          data.tools.map((tool) => <Card key={tool.id} tool={tool} />)}
       </Flex>
     </>
   );

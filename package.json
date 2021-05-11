@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fake-api": "json-server db.json -p 3333 --delay 1000",
+    "fake-api": "json-server db.json -p 3333 -w --delay 1000",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint-fix": "eslint . --ext .jsx,.ts,.tsx --fix"
   },

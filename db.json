@@ -40,17 +40,6 @@
         "https",
         "localhost"
       ]
-    },
-    {
-      "title": "test-tool",
-      "description": "test-tool description wow",
-      "tags": [
-        "test",
-        "tool",
-        "wow",
-        "such"
-      ],
-      "id": 5
     }
   ]
 }
