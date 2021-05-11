@@ -4,7 +4,16 @@ import { Flex } from '@chakra-ui/react';
 import { SearchBox } from '../components/Home/SearchBox';
 import { Card } from '../components/Home/Card';
 
+import { useTools } from '../hooks/useTools';
+
+import { Skeleton } from '../components/Home/Skeleton';
+
 export default function Home(): JSX.Element {
+  const { data, isLoading, isFetching, error } = useTools();
+  const t = true;
+
+  console.log(data);
+
   return (
     <>
       <Head>
@@ -20,9 +29,16 @@ export default function Home(): JSX.Element {
         marginX="auto"
       >
         <SearchBox />
-        <Card />
-        <Card />
-        <Card />
+
+        {isLoading && <Skeleton error={Boolean(error)} />}
+
+        {!isLoading && (
+          <>
+            <Card />
+            <Card />
+            <Card />
+          </>
+        )}
       </Flex>
     </>
   );

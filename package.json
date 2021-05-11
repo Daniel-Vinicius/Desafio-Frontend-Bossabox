@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fake-api": "json-server db.json -p 3333 --delay 500",
+    "fake-api": "json-server db.json -p 3333 --delay 1000",
     "type-check": "tsc --project tsconfig.json --pretty --noEmit",
     "lint-fix": "eslint . --ext .jsx,.ts,.tsx --fix"
   },
@@ -20,6 +20,7 @@
     "axios": "^0.21.1",
     "framer-motion": "^4.1.15",
     "next": "10.2.0",
+    "nextjs-progressbar": "^0.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.5.2",
