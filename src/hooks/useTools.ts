@@ -9,8 +9,6 @@ type getToolsReturn = { tools: Tool[] };
 export async function getTools(): Promise<getToolsReturn> {
   const { data } = await api.get<Tool[]>('tools');
 
-  console.log(data);
-
   return {
     tools: data,
   };

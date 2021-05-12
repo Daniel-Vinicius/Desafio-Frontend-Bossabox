@@ -40,6 +40,9 @@ module.exports = {
         // Why would you want unused vars?
         '@typescript-eslint/no-unused-vars': ['warn'],
 
+        // To avoid input error with icon
+        'react/no-children-prop': 0,
+
         'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Includes .prettierrc.js rules
 
         // I suggest this setting for requiring return types on functions only where useful

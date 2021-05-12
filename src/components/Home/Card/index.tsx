@@ -43,7 +43,7 @@ export function Card({
           leftIcon={<MdClose size="1.5rem" />}
           variant="ghost"
           w="5rem"
-          px="5rem"
+          px={['2rem', '5rem']}
           colorScheme="white.200"
         >
           Remove

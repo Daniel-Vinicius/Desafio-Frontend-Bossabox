@@ -14,22 +14,32 @@ interface SkeletonProps {
   error: boolean;
 }
 
+interface SkeletonErrorProps {
+  errorMessage: string;
+}
+
+export function SkeletonError({
+  errorMessage,
+}: SkeletonErrorProps): JSX.Element {
+  return (
+    <Flex mt="5rem" flexDirection="column" mx="auto">
+      <Heading color="pink.400">{errorMessage}</Heading>
+      <Text
+        as="a"
+        color="pink.100"
+        borderRadius="0.5rem"
+        mt="1rem"
+        href={frontendURL}
+      >
+        Reload Page
+      </Text>
+    </Flex>
+  );
+}
+
 export function Skeleton({ error }: SkeletonProps): JSX.Element {
   if (error) {
-    return (
-      <Flex mt="5rem" flexDirection="column" mx="auto">
-        <Heading color="pink.400">Failed to fetch tools</Heading>
-        <Text
-          as="a"
-          color="pink.100"
-          borderRadius="0.5rem"
-          mt="1rem"
-          href={frontendURL}
-        >
-          Reload Page
-        </Text>
-      </Flex>
-    );
+    return <SkeletonError errorMessage="Failed to fetch tools" />;
   }
 
   return (
