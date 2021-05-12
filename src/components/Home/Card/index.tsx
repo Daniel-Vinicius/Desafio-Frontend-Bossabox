@@ -1,4 +1,4 @@
-import { Flex, Text, Button } from '@chakra-ui/react';
+import { Flex, Text, Link, Button } from '@chakra-ui/react';
 
 import { MdClose } from 'react-icons/md';
 
@@ -29,16 +29,15 @@ export function Card({
       flexDir="column"
     >
       <Flex w="100%" align="center" justify="space-between">
-        <Text
-          as="a"
-          target="_blank"
+        <Link
+          isExternal
           href={link}
           color="pink.400"
           fontWeight="light"
           fontSize="2rem"
         >
           {title}
-        </Text>
+        </Link>
         <Button
           leftIcon={<MdClose size="1.5rem" />}
           variant="ghost"
