@@ -1,8 +1,14 @@
-import { Flex, Text, Link, Button } from '@chakra-ui/react';
+import { useCallback } from 'react';
+import { Flex, Text, Link, Button, useDisclosure } from '@chakra-ui/react';
+import { useMutation } from 'react-query';
 
 import { MdClose } from 'react-icons/md';
 
+import { queryClient } from '../../../services/queryClient';
+import { api } from '../../../services/api';
 import { Tool } from '../../../types/Tool';
+
+import { Modal } from '../Modal';
 
 export const cardStyles = {
   w: '100%',
@@ -13,11 +19,38 @@ export const cardStyles = {
   bg: 'gray.800',
 };
 
-export function Card({
-  tool: { link, title, tags, description },
-}: {
+interface CardProps {
   tool: Tool;
-}): JSX.Element {
+}
+
+export function Card({
+  tool: { link, title, tags, description, id },
+}: CardProps): JSX.Element {
+  const disclosure = useDisclosure();
+
+  const { onOpen, isOpen, onClose } = disclosure;
+
+  const deleteTool = useMutation(
+    async () => {
+      await api.delete(`tools/${id}`);
+
+      onClose();
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('tools');
+      },
+    },
+  );
+
+  const handleRemoveModal = useCallback(() => {
+    onOpen();
+  }, [onOpen]);
+
+  const handleRemove = useCallback(async () => {
+    await deleteTool.mutateAsync();
+  }, [deleteTool]);
+
   return (
     <Flex
       w={cardStyles.w}
@@ -28,6 +61,15 @@ export function Card({
       bg={cardStyles.bg}
       flexDir="column"
     >
+      <Modal
+        isOpen={isOpen}
+        onClose={onClose}
+        isLoading={deleteTool.isLoading}
+        onRemove={handleRemove}
+        toolLink={link}
+        toolTitle={title}
+        key={id}
+      />
       <Flex w="100%" align="center" justify="space-between">
         <Link
           isExternal
@@ -44,6 +86,7 @@ export function Card({
           w="5rem"
           px={['2rem', '5rem']}
           colorScheme="white.200"
+          onClick={handleRemoveModal}
         >
           Remove
         </Button>

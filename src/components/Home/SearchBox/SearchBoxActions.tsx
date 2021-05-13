@@ -36,17 +36,19 @@ const SearchFormSchema = yup.object().shape({
 });
 
 export function SearchBoxActions(): JSX.Element {
-  const { isFiltered, setToolsFiltered, setIsNoData, isNoData } =
-    useToolsFiltered();
+  const { setToolsFiltered, setIsNoData } = useToolsFiltered();
 
   const {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm<SearchFormType>({
     resolver: yupResolver(SearchFormSchema),
   });
+
+  const values = getValues();
 
   const handleSearch: SubmitHandler<SearchFormType> = async (values, event) => {
     const { checkbox, search } = values;
@@ -70,10 +72,14 @@ export function SearchBoxActions(): JSX.Element {
   };
 
   const clearFilters = useCallback(() => {
+    if (!values.search) {
+      return;
+    }
+
     reset();
     setToolsFiltered([]);
     setIsNoData(false);
-  }, [setIsNoData, setToolsFiltered, reset]);
+  }, [values.search, reset, setToolsFiltered, setIsNoData]);
 
   return (
     <Flex justify="space-between" mt="1rem" flexDirection={['column', 'row']}>
@@ -87,14 +93,13 @@ export function SearchBoxActions(): JSX.Element {
             pointerEvents="none"
             children={<MdSearch color="gray.300" />}
           />
-          {isFiltered ||
-            (isNoData && (
-              <InputRightElement
-                cursor="pointer"
-                children={<MdClose color="gray.300" />}
-                onClick={clearFilters}
-              />
-            ))}
+          {values.search && (
+            <InputRightElement
+              cursor="pointer"
+              children={<MdClose color="gray.300" />}
+              onClick={clearFilters}
+            />
+          )}
           <Input
             {...register('search')}
             name="search"
