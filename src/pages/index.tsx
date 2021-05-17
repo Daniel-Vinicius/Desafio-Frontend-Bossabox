@@ -15,7 +15,6 @@ export default function Home(): JSX.Element {
         h="100vh"
         flexDir="column"
         p="1rem"
-        mb={['12rem', '4rem', 0]}
         maxW="80rem"
         marginX="auto"
       >

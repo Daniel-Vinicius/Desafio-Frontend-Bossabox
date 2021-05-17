@@ -1,3 +1,4 @@
+import { Flex } from '@chakra-ui/react';
 import { Card } from './index';
 
 import { useTools } from '../../../hooks/useTools';
@@ -16,12 +17,12 @@ export function Cards(): JSX.Element {
   }
 
   return (
-    <>
+    <Flex h="100%" w="100%" pb="2rem" flexDir="column">
       {isLoading && <Skeleton error={Boolean(error)} />}
 
       {!isLoading &&
         data &&
         tools?.map((tool) => <Card key={tool.id} tool={tool} />)}
-    </>
+    </Flex>
   );
 }
