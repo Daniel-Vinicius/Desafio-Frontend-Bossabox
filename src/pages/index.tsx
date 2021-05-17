@@ -11,11 +11,11 @@ export default function Home(): JSX.Element {
         <title>Desafio Bossa Box</title>
       </Head>
       <Flex
-        w="100vw"
+        w="100%"
         h="100vh"
         flexDir="column"
         p="1rem"
-        mb={['1rem', 0]}
+        mb={['12rem', '4rem', 0]}
         maxW="80rem"
         marginX="auto"
       >

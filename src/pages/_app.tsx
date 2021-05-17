@@ -1,4 +1,6 @@
 import { AppProps } from 'next/app';
+import '../styles/scroll.scss';
+
 import IndexContexts from '../contexts';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {

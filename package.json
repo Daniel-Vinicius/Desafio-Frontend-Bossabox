@@ -26,6 +26,7 @@
     "react-hook-form": "^7.5.2",
     "react-icons": "^4.2.0",
     "react-query": "^3.16.0",
+    "sass": "^1.32.13",
     "yup": "^0.32.9"
   },
   "devDependencies": {

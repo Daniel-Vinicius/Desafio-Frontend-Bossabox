@@ -6,10 +6,9 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Button,
 } from '@chakra-ui/react';
 
-import { MdSearch, MdAdd, MdClose } from 'react-icons/md';
+import { MdSearch, MdClose } from 'react-icons/md';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -21,6 +20,7 @@ import { api } from '../../../services/api';
 import { useToolsFiltered } from '../../../contexts/ToolsFilteredContext';
 
 import { Input } from '../../Form/Input';
+import { AddButton } from './SearchBoxActionsAddButton';
 
 type SearchFormType = {
   search: string;
@@ -126,15 +126,7 @@ export function SearchBoxActions(): JSX.Element {
           Search in tags only
         </Checkbox>
       </Flex>
-      <Button
-        leftIcon={<MdAdd />}
-        colorScheme="pink"
-        variant="solid"
-        w="5rem"
-        ml={['auto', '0']}
-      >
-        Add
-      </Button>
+      <AddButton />
     </Flex>
   );
 }

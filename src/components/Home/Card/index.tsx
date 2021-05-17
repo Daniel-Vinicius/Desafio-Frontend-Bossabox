@@ -8,7 +8,7 @@ import { queryClient } from '../../../services/queryClient';
 import { api } from '../../../services/api';
 import { Tool } from '../../../types/Tool';
 
-import { Modal } from '../Modal';
+import { ModalRemove } from '../Modal';
 
 export const cardStyles = {
   w: '100%',
@@ -61,7 +61,7 @@ export function Card({
       bg={cardStyles.bg}
       flexDir="column"
     >
-      <Modal
+      <ModalRemove
         isOpen={isOpen}
         onClose={onClose}
         isLoading={deleteTool.isLoading}
@@ -95,7 +95,8 @@ export function Card({
       <Text>{description}</Text>
       <Text fontWeight="bold" color="pink.200" mt="auto">
         {tags.map((tag) => {
-          return ` #${tag}`;
+          if (tag.slice(0, 1) !== '#') return ` #${tag}`;
+          if (tag.slice(0, 1) === '#') return ` ${tag}`;
         })}
       </Text>
     </Flex>
