@@ -6,8 +6,6 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import { frontendURL } from '../../../services/api';
-
 import { cardStyles } from '../Card';
 
 interface SkeletonProps {
@@ -29,7 +27,7 @@ export function SkeletonError({
         color="pink.100"
         borderRadius="0.5rem"
         mt="1rem"
-        href={frontendURL}
+        href={window.location.href}
       >
         Reload Page
       </Text>
